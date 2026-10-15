@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Glow & Grace</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="admin.js" defer></script>
+</head>
+<body>
+    <div id="loginScreen" class="login-screen">
+        <form id="adminLoginForm" class="login-card">
+            <div class="logo">G<span>&</span>G</div>
+            <p class="eyebrow">GLOW & GRACE</p>
+            <h1>Admin Login</h1>
+            <p class="muted">Sign in to manage your skincare store.</p>
+
+            <label for="adminEmail">Email address</label>
+            <input id="adminEmail" type="email" required
+                   value="admin@glowgrace.com" autocomplete="username">
+
+            <label for="adminPassword">Password</label>
+            <input id="adminPassword" type="password" required
+                   placeholder="Enter admin password"
+                   autocomplete="current-password">
+
+            <button class="primary-btn" type="submit">Sign In</button>
+            <p id="loginMessage" class="message" role="status"></p>
+            <a href="index.html" class="back-link">← Back to store</a>
+        </form>
+    </div>
+
+    <div id="dashboardScreen" class="dashboard hidden">
+        <aside class="sidebar">
+            <a href="admin.html" class="brand">GLOW <span>&</span> GRACE</a>
+            <p class="sidebar-label">ADMINISTRATION</p>
+            <a class="nav-link active" href="#overview">▦ &nbsp; Overview</a>
+            <a class="nav-link" href="#productsSection">♧ &nbsp; Products</a>
+            <a class="nav-link" href="orders.html">♡ &nbsp; Customer Orders</a>
+            <a class="nav-link" href="index.html">↗ &nbsp; View Store</a>
+            <button id="logoutButton" class="logout-btn">↪ &nbsp; Log Out</button>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">YOUR STORE AT A GLANCE</p>
+                    <h1>Admin Dashboard</h1>
+                </div>
+                <span class="admin-pill">● Admin</span>
+            </header>
+
+            <p id="dashboardMessage" class="message" role="status"></p>
+
+            <section id="overview" class="stats-grid">
+                <article class="stat-card">
+                    <span class="stat-icon">♧</span>
+                    <p>Total Products</p>
+                    <h2 id="statProducts">—</h2>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon">▤</span>
+                    <p>Total Orders</p>
+                    <h2 id="statOrders">—</h2>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon">₹</span>
+                    <p>Total Order Value</p>
+                    <h2 id="statSales">—</h2>
+                </article>
+                <article class="stat-card">
+                    <span class="stat-icon">▥</span>
+                    <p>Units in Stock</p>
+                    <h2 id="statStock">—</h2>
+                </article>
+            </section>
+
+            <section id="productsSection" class="panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">YOUR CATALOGUE</p>
+                        <h2>Product Management</h2>
+                    </div>
+                    <button id="addProductButton" class="primary-btn">
+                        + Add Product
+                    </button>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <tr><td colspan="5">Loading products...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="productModal" class="modal hidden">
+        <form id="productForm" class="product-form">
+            <div class="modal-heading">
+                <div>
+                    <p class="eyebrow">PRODUCT CATALOGUE</p>
+                    <h2 id="formTitle">Add Product</h2>
+                </div>
+                <button type="button" id="closeProductModal"
+                        class="close-btn" aria-label="Close">×</button>
+            </div>
+
+            <input type="hidden" id="productId">
+
+            <label for="productName">Product name</label>
+            <input id="productName" maxlength="200" required>
+
+            <label for="productCategory">Category</label>
+            <select id="productCategory" required>
+                <option value="Serums">Serums</option>
+                <option value="Face Wash">Face Wash</option>
+                <option value="Moisturizers">Moisturizers</option>
+                <option value="Sunscreens">Sunscreens</option>
+                <option value="Masks">Masks</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <div class="form-row">
+                <div>
+                    <label for="productPrice">Price (₹)</label>
+                    <input id="productPrice" type="number" min="0"
+                           step="0.01" required>
+                </div>
+                <div>
+                    <label for="productStock">Stock quantity</label>
+                    <input id="productStock" type="number" min="0"
+                           step="1" required>
+                </div>
+            </div>
+
+            <label for="productImage">Image URL (optional)</label>
+            <input id="productImage" type="url"
+                   placeholder="https://example.com/product.jpg">
+
+            <label for="productDescription">Description</label>
+            <textarea id="productDescription" rows="3"
+                      placeholder="Describe the skincare product"></textarea>
+
+            <p id="productFormMessage" class="message" role="status"></p>
+            <button type="submit" class="primary-btn" id="saveProductButton">
+                Save Product
+            </button>
+        </form>
+    </div>
+</body>
+</html>
